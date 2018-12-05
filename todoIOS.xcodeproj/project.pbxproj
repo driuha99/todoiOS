@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C03F481B219B80690004824E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03F481A219B80690004824E /* AppDelegate.swift */; };
-		C03F481D219B80690004824E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03F481C219B80690004824E /* ViewController.swift */; };
+		C03F481D219B80690004824E /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03F481C219B80690004824E /* TaskViewController.swift */; };
 		C03F4820219B80690004824E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C03F481E219B80690004824E /* Main.storyboard */; };
 		C03F4822219B806C0004824E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C03F4821219B806C0004824E /* Assets.xcassets */; };
 		C03F4825219B806C0004824E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C03F4823219B806C0004824E /* LaunchScreen.storyboard */; };
@@ -17,7 +17,7 @@
 /* Begin PBXFileReference section */
 		C03F4817219B80690004824E /* todoIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C03F481A219B80690004824E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C03F481C219B80690004824E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C03F481C219B80690004824E /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		C03F481F219B80690004824E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C03F4821219B806C0004824E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C03F4824219B806C0004824E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -35,6 +35,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C03E525A21B7254300A22135 /* Suppoet files */ = {
+			isa = PBXGroup;
+			children = (
+				C03F481A219B80690004824E /* AppDelegate.swift */,
+			);
+			path = "Suppoet files";
+			sourceTree = "<group>";
+		};
+		C03E525B21B725DD00A22135 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C03F481E219B80690004824E /* Main.storyboard */,
+				C03F4823219B806C0004824E /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C03E525C21B726D300A22135 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C03E525D21B726DB00A22135 /* Controler */ = {
+			isa = PBXGroup;
+			children = (
+				C03F481C219B80690004824E /* TaskViewController.swift */,
+			);
+			path = Controler;
+			sourceTree = "<group>";
+		};
 		C03F480E219B80690004824E = {
 			isa = PBXGroup;
 			children = (
@@ -54,11 +86,11 @@
 		C03F4819219B80690004824E /* todoIOS */ = {
 			isa = PBXGroup;
 			children = (
-				C03F481A219B80690004824E /* AppDelegate.swift */,
-				C03F481C219B80690004824E /* ViewController.swift */,
-				C03F481E219B80690004824E /* Main.storyboard */,
+				C03E525A21B7254300A22135 /* Suppoet files */,
+				C03E525B21B725DD00A22135 /* View */,
+				C03E525C21B726D300A22135 /* Model */,
+				C03E525D21B726DB00A22135 /* Controler */,
 				C03F4821219B806C0004824E /* Assets.xcassets */,
-				C03F4823219B806C0004824E /* LaunchScreen.storyboard */,
 				C03F4826219B806C0004824E /* Info.plist */,
 			);
 			path = todoIOS;
@@ -135,7 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C03F481D219B80690004824E /* ViewController.swift in Sources */,
+				C03F481D219B80690004824E /* TaskViewController.swift in Sources */,
 				C03F481B219B80690004824E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,7 +324,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.webdeveloperplus.todoIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -310,7 +342,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.webdeveloperplus.todoIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskViewController: UIViewController {
+class TaskViewController: UITableViewController {
     
     
     
@@ -19,7 +19,7 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        actionTextFieldCustomizeUI()
+
     }
 
 

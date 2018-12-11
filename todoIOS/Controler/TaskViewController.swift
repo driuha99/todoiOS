@@ -10,6 +10,10 @@ import UIKit
 
 class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // Store all the TODO tasks in to the array
+    var todoTasks: [String] = [String]()
+    
+    
     // Mark: Cell Identifier constant
     let cellID = "cellID"
     
@@ -24,6 +28,7 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         actionTextFieldCustomizeUI()
+        customizeUITableView()
         
         
         //TODO: Set yourself as the delegate and datasource here:
@@ -47,18 +52,33 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         actionTextField.leftViewMode = UITextField.ViewMode.always
     }
     
+    // MARK: Customize UITableView
+    func customizeUITableView() {
+        // Clear the separator lines betwen cells
+        tasksTableViews.separatorStyle = .none
+        
+        // Change the background colour for UITableView
+        tasksTableViews.backgroundColor = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1.0)
+        
+        if todoTasks.count == 0 {
+            let messageLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tasksTableViews.bounds.size.width, height: tasksTableViews.bounds.size.height))
+            messageLabel.text = "You have nothing to-do"
+            messageLabel.textColor = UIColor.black
+            messageLabel.textAlignment = .center
+            tasksTableViews.backgroundView = messageLabel
+        }
+        
+    }
+    
    
     // MARK: Configuring the Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //TODO: remove this hard coded line
-        return 2
+        return todoTasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
-        
-        cell.textLabel?.text = "Hello world"
-        
+        cell.backgroundColor = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1.0)
         
         return cell
     }

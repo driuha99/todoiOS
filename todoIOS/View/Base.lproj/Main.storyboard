@@ -84,6 +84,11 @@
                                             <constraint firstItem="geg-Rs-4lv" firstAttribute="leading" secondItem="4tG-w0-i1s" secondAttribute="leading" id="wTD-0L-nms"/>
                                         </constraints>
                                     </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xvU-8V-fs0">
+                                        <rect key="frame" x="0.0" y="150" width="375" height="517"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92941176470588238" green="0.94117647058823528" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -104,6 +109,7 @@
                     </view>
                     <connections>
                         <outlet property="actionTextField" destination="ZT5-mH-9lW" id="NkD-K9-6h0"/>
+                        <outlet property="tasksTableViews" destination="xvU-8V-fs0" id="aR4-2h-TX6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

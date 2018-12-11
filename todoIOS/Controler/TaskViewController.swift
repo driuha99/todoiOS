@@ -8,22 +8,36 @@
 
 import UIKit
 
-class TaskViewController: UITableViewController {
+class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
+    // Mark: Cell Identifier constant
+    let cellID = "cellID"
     
     // Mark: IBOutlets
     @IBOutlet weak var actionTextField: UITextField!
+    @IBOutlet weak var tasksTableViews: UITableView!
     
+    
+    // Mark: Collection of the tasks
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        actionTextFieldCustomizeUI()
+        
+        
+        //TODO: Set yourself as the delegate and datasource here:
+        tasksTableViews.delegate = self
+        tasksTableViews.dataSource = self 
 
+        //MARK:  Registers a class for use in creating new table cells.
+        tasksTableViews.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+
+        
     }
 
-
     
+    // TODO: Use this method or delete it when you will create a text field
     func actionTextFieldCustomizeUI() {
         
         // Create padding for the Text Field placeholder
@@ -31,9 +45,23 @@ class TaskViewController: UITableViewController {
         
         actionTextField.leftView = paddingView
         actionTextField.leftViewMode = UITextField.ViewMode.always
-        
     }
     
+   
+    // MARK: Configuring the Table View
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //TODO: remove this hard coded line
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
+        
+        cell.textLabel?.text = "Hello world"
+        
+        
+        return cell
+    }
     
     
     

@@ -78,10 +78,36 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
-        cell.backgroundColor = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1.0)
+        
+        if todoTasks.count == 0 {
+             cell.backgroundColor = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1.0)
+        }
+        
+        
+       
+        cell.textLabel?.text = todoTasks[indexPath.row]
         
         return cell
     }
+    
+    
+    // MARK: Action, add tasks into the table
+    
+    @IBAction func addTask(_ sender: UIButton) {
+        actionTextField.endEditing(true)
+
+        
+        if let taskFieldText = actionTextField.text {
+            todoTasks.insert(taskFieldText, at: 0)
+        }
+        
+        actionTextField.text = ""
+        
+        
+        tasksTableViews.reloadData()
+        
+    }
+    
     
     
     

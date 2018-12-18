@@ -12,7 +12,7 @@ import CoreData
 class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Store all the TODO tasks in to the array
-    var todoTasks = [Tasks]()
+    var todoTasks = [UserTasks]()
     
     // Context app delegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -30,9 +30,12 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Load the data from database
+        loadTasksData()
+        
         actionTextFieldCustomizeUI()
         customizeUITableView()
-        
         
         //TODO: - Set yourself as the delegate and datasource here:
         tasksTableViews.delegate = self
@@ -41,9 +44,6 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         //MARK: -  Registers a class for use in creating new table cells.
         tasksTableViews.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
 
-        // Load the data from database
-        loadTasksData()
-        
     }
 
     
@@ -95,7 +95,6 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
-    
     //MARK: - TableView  Delegate Methods
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -117,7 +116,7 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func loadTasksData() {
-        let request: NSFetchRequest<Tasks> = Tasks.fetchRequest()
+        let request: NSFetchRequest<UserTasks> = UserTasks.fetchRequest()
         
         do {
             todoTasks = try context.fetch(request)
@@ -132,11 +131,11 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func addTask(_ sender: UIButton) {
         actionTextField.endEditing(true)
-
+        customizeUITableView()
         
         if let taskFieldText = actionTextField.text {
             
-            let newTask = Tasks(context: context)
+            let newTask = UserTasks(context: context)
             newTask.title = taskFieldText
             newTask.completed = false
             todoTasks.append(newTask)

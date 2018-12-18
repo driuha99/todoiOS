@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Store all the TODO tasks in to the array
-    var todoTasks: [String] = [String]()
+    var todoTasks = [Tasks]()
     
+    // Context app delegate
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     // Mark: - Cell Identifier constant
     let cellID = "cellID"
@@ -38,6 +41,8 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         //MARK: -  Registers a class for use in creating new table cells.
         tasksTableViews.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
 
+        // Load the data from database
+        loadTasksData()
         
     }
 
@@ -85,7 +90,7 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
              cell.backgroundColor = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1.0)
         }
         
-        cell.textLabel?.text = todoTasks[indexPath.row]
+        cell.textLabel?.text = todoTasks[indexPath.row].title
         
         return cell
     }
@@ -98,6 +103,30 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    // MARK: - Table View Data Manipulation
+    func saveTasks() {
+        
+        do {
+            try context.save()
+        }catch {
+              print("Error saving context \(error)")
+        }
+        
+        tasksTableViews.reloadData()
+        
+    }
+    
+    func loadTasksData() {
+        let request: NSFetchRequest<Tasks> = Tasks.fetchRequest()
+        
+        do {
+            todoTasks = try context.fetch(request)
+        }catch {
+            print("Error fetching the data from context: \(error)")
+        }
+        
+    }
+    
     
    // MARK: - Add New Tasks
     
@@ -106,13 +135,19 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
 
         
         if let taskFieldText = actionTextField.text {
-            todoTasks.insert(taskFieldText, at: 0)
+            
+            let newTask = Tasks(context: context)
+            newTask.title = taskFieldText
+            newTask.completed = false
+            todoTasks.append(newTask)
+            
+            saveTasks()
         }
+    
         
         actionTextField.text = ""
         
-        
-        tasksTableViews.reloadData()
+    
         
     }
     

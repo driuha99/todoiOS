@@ -42,7 +42,7 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         actionTextFieldCustomizeUI()
         customizeUITableView()
         
-        //TODO: - Set yourself as the delegate and datasource here:
+        //TODO: - Setas the delegate and datasource :
         tasksTableViews.delegate = self
         tasksTableViews.dataSource = self 
 
@@ -76,13 +76,19 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         // Change the background colour for UITableView
         tasksTableViews.backgroundColor = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1.0)
         
+        // Create a new UILabel
+        let messageLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tasksTableViews.bounds.size.width, height: tasksTableViews.bounds.size.height))
+        messageLabel.textColor = UIColor.black
+        messageLabel.textAlignment = .center
+        tasksTableViews.backgroundView = messageLabel
+        
         if todoTasks.count == 0 {
-            let messageLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tasksTableViews.bounds.size.width, height: tasksTableViews.bounds.size.height))
             messageLabel.text = "You have nothing to-do"
-            messageLabel.textColor = UIColor.black
-            messageLabel.textAlignment = .center
-            tasksTableViews.backgroundView = messageLabel
+        }else {
+            messageLabel.text = ""
+            
         }
+    
         
     }
     
@@ -118,6 +124,9 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
             self.todoTasks.remove(at: indexPath.row)
             
             self.saveTasks()
+            
+            // Verify if there are more tasks on your to-do list and display the message
+            self.customizeUITableView()
             
         }
         
@@ -166,7 +175,6 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func addTask(_ sender: UIButton) {
         actionTextField.endEditing(true)
-        customizeUITableView()
         
         if let taskFieldText = actionTextField.text {
             
@@ -180,9 +188,8 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     
         
         actionTextField.text = ""
-        
+        customizeUITableView()
     
-        
     }
 
     

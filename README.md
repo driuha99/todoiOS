@@ -6,7 +6,8 @@ The app was built in Swift and I started this app just for learning purposes! If
 [image1]: https://github.com/driuha99/todoiOS/tree/master/project-showcase/image1.png "Project showcase image 1"
 [image2]: https://github.com/driuha99/todoiOS/tree/master/project-showcase/image2.png "Project showcase image 2"
 
-![alt text][image1] ![alt text][image2]
+![alt text][image1]
+![alt text][image2]
 
 ## todo list
 

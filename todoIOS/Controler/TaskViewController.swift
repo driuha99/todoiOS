@@ -8,9 +8,11 @@
 
 import UIKit
 import CoreData
+import SwipeCellKit
 
-class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
+
+
     // Store all the TODO tasks in to the array
     var todoTasks = [UserTasks]()
     
@@ -19,6 +21,9 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     
     // Mark: - Cell Identifier constant
     let cellID = "cellID"
+    
+    // TODO: - Delete this on merge
+    let filePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("TasksViewController.plist")
     
     // Mark: - IBOutlets
     @IBOutlet weak var actionTextField: UITextField!
@@ -42,8 +47,10 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         tasksTableViews.dataSource = self 
 
         //MARK: -  Registers a class for use in creating new table cells.
-        tasksTableViews.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        tasksTableViews.register(SwipeTableViewCell.self, forCellReuseIdentifier: cellID)
 
+        //print(filePath)
+        
     }
 
     
@@ -62,6 +69,9 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     func customizeUITableView() {
         // Clear the separator lines betwen cells
         tasksTableViews.separatorStyle = .none
+        
+        //Set up the cell height
+        tasksTableViews.rowHeight = 80.0
         
         // Change the background colour for UITableView
         tasksTableViews.backgroundColor = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1.0)
@@ -83,17 +93,42 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         return todoTasks.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as! SwipeTableViewCell
+        cell.delegate = self
         
         if todoTasks.count == 0 {
-             cell.backgroundColor = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1.0)
+            cell.backgroundColor = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1.0)
         }
         
         cell.textLabel?.text = todoTasks[indexPath.row].title
         
         return cell
     }
+    
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            // handle action by updating model with deletion
+    
+            self.context.delete(self.todoTasks[indexPath.row])
+            self.todoTasks.remove(at: indexPath.row)
+            
+            self.saveTasks()
+            
+        }
+        
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "deleteIcon")
+        
+        return [deleteAction]
+    }
+    
+    
+    
     
     //MARK: - TableView  Delegate Methods
     
@@ -149,9 +184,7 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     
         
     }
-    
-    
-    
+
     
 }
 

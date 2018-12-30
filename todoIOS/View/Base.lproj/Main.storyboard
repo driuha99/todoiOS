@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,20 +15,20 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TaskViewController" customModule="todoIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d77-b0-LS6" userLabel="background">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tG-w0-i1s" userLabel="Input Background">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="geg-Rs-4lv" userLabel="Input Field Container">
-                                                <rect key="frame" x="0.0" y="51" width="301" height="48"/>
+                                                <rect key="frame" x="0.0" y="51" width="340" height="48"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter an activity.." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZT5-mH-9lW">
-                                                        <rect key="frame" x="10" y="0.0" width="291" height="48"/>
+                                                        <rect key="frame" x="10" y="0.0" width="330" height="48"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         <constraints>
@@ -48,7 +48,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OS2-b9-4jK" userLabel="Button Container">
-                                                <rect key="frame" x="305" y="51" width="62" height="48"/>
+                                                <rect key="frame" x="344" y="51" width="62" height="48"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KdP-RB-rL1">
                                                         <rect key="frame" x="0.0" y="0.0" width="62" height="48"/>
@@ -87,9 +87,8 @@
                                             <constraint firstItem="geg-Rs-4lv" firstAttribute="leading" secondItem="4tG-w0-i1s" secondAttribute="leading" id="wTD-0L-nms"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xvU-8V-fs0">
-                                        <rect key="frame" x="0.0" y="150" width="375" height="517"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xvU-8V-fs0">
+                                        <rect key="frame" x="0.0" y="150" width="414" height="712"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
@@ -97,6 +96,10 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="4tG-w0-i1s" secondAttribute="trailing" id="JbQ-HW-7DO"/>
                                     <constraint firstItem="4tG-w0-i1s" firstAttribute="leading" secondItem="d77-b0-LS6" secondAttribute="leading" id="eKz-Bz-Dof"/>
+                                    <constraint firstItem="xvU-8V-fs0" firstAttribute="leading" secondItem="d77-b0-LS6" secondAttribute="leading" id="oSz-rh-lfX"/>
+                                    <constraint firstAttribute="bottom" secondItem="xvU-8V-fs0" secondAttribute="bottom" id="p4V-lS-hpO"/>
+                                    <constraint firstAttribute="trailing" secondItem="xvU-8V-fs0" secondAttribute="trailing" id="rCf-GM-B0S"/>
+                                    <constraint firstItem="xvU-8V-fs0" firstAttribute="top" secondItem="4tG-w0-i1s" secondAttribute="bottom" id="ub3-YL-cGc"/>
                                     <constraint firstItem="4tG-w0-i1s" firstAttribute="top" secondItem="d77-b0-LS6" secondAttribute="top" id="zPr-Ki-3wh"/>
                                 </constraints>
                             </view>
@@ -117,7 +120,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="135.19999999999999" y="131.78410794602701"/>
+            <point key="canvasLocation" x="134.78260869565219" y="131.25"/>
         </scene>
     </scenes>
 </document>

@@ -1,18 +1,16 @@
 {
   "images" : [
     {
-      "idiom" : "iphone",
-      "filename" : "plus.png",
+      "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "idiom" : "iphone",
-      "filename" : "plus@2x.png",
+      "idiom" : "universal",
+      "filename" : "delete-icon.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
-      "filename" : "plus@3x.png",
+      "idiom" : "universal",
       "scale" : "3x"
     }
   ],

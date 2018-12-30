@@ -3,11 +3,7 @@ todoIOS is a simple app that was supposed to be a clone of [To-do list app](http
 
 The app was built in Swift and I started this app just for learning purposes! If you see any mistakes in my code or where I could do better feel free to point out. 
 
-[image1]: https://github.com/driuha99/todoiOS/blob/master/project-showcase/image1.png "Project showcase image 1"
-[image2]: https://github.com/driuha99/todoiOS/blob/master/project-showcase/image2.png "Project showcase image 2"
-
-![alt text][image1]
-![alt text][image2]
+<img src="https://github.com/driuha99/todoiOS/blob/master/project-showcase/image1.png" width="350" height="748">            <img src="https://github.com/driuha99/todoiOS/blob/master/project-showcase/image2.png" width="350" height="748">
 
 ## todo list
 

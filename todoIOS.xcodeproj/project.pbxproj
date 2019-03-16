@@ -84,12 +84,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		C03E525D21B726DB00A22135 /* Controler */ = {
+		C03E525D21B726DB00A22135 /* Action */ = {
 			isa = PBXGroup;
 			children = (
 				C03F481C219B80690004824E /* TaskViewController.swift */,
 			);
-			path = Controler;
+			path = Action;
 			sourceTree = "<group>";
 		};
 		C03F480E219B80690004824E = {
@@ -116,7 +116,7 @@
 				C03F481A219B80690004824E /* AppDelegate.swift */,
 				C03E525B21B725DD00A22135 /* View */,
 				C03E525C21B726D300A22135 /* Model */,
-				C03E525D21B726DB00A22135 /* Controler */,
+				C03E525D21B726DB00A22135 /* Action */,
 				C03E525A21B7254300A22135 /* Suppoet files */,
 				C03F4826219B806C0004824E /* Info.plist */,
 			);
@@ -135,7 +135,6 @@
 				C03F4814219B80690004824E /* Frameworks */,
 				C03F4815219B80690004824E /* Resources */,
 				F86371B5AFC04D92F8A17D39 /* [CP] Embed Pods Frameworks */,
-				AF7F78ED379B7B50C785A598 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -211,28 +210,13 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AF7F78ED379B7B50C785A598 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-todoIOS/Pods-todoIOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F86371B5AFC04D92F8A17D39 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-todoIOS/Pods-todoIOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-todoIOS/Pods-todoIOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -241,7 +225,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-todoIOS/Pods-todoIOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-todoIOS/Pods-todoIOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -403,7 +387,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 39V2J8CQ5E;
 				INFOPLIST_FILE = todoIOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.webdeveloperplus.todoIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -419,7 +406,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 39V2J8CQ5E;
 				INFOPLIST_FILE = todoIOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.webdeveloperplus.todoIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

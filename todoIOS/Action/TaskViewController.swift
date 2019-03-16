@@ -176,7 +176,7 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     @IBAction func addTask(_ sender: UIButton) {
         actionTextField.endEditing(true)
         
-        if let taskFieldText = actionTextField.text {
+        if let taskFieldText = actionTextField.text, actionTextField.text?.count != 0 {
             
             let newTask = UserTasks(context: context)
             newTask.title = taskFieldText
@@ -184,6 +184,9 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
             todoTasks.append(newTask)
             
             saveTasks()
+        }else {
+            //TODO: - Create an alert to notify users that the text field is empyt!
+            print("Text field empty")
         }
     
         

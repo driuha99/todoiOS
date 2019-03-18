@@ -10,11 +10,12 @@ import UIKit
 import CoreData
 import SwipeCellKit
 
-class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
+class TaskViewController:  UIViewController, UITableViewDelegate, SwipeTableViewCellDelegate {
 
 
-    // Store all the TODO tasks in to the array
-    var todoTasks = [UserTasks]()
+    // Create an instance of Task View Controller data source
+    // TaskViewControllerDataSource confirms to UITableViewDataSource protocol
+    let dataSource = TaskViewControllerDataSource()
     
     // Context app delegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -22,15 +23,11 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     // Mark: - Cell Identifier constant
     let cellID = "cellID"
     
-    // TODO: - Delete this on merge
-    let filePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("TasksViewController.plist")
     
     // Mark: - IBOutlets
     @IBOutlet weak var actionTextField: UITextField!
     @IBOutlet weak var tasksTableViews: UITableView!
-    
-    
-    // Mark: - Collection of the tasks
+
    
 
     override func viewDidLoad() {
@@ -38,33 +35,25 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         
         // Load the data from database
         loadTasksData()
-        
-        actionTextFieldCustomizeUI()
+       
         customizeUITableView()
         
         //TODO: - Setas the delegate and datasource :
         tasksTableViews.delegate = self
-        tasksTableViews.dataSource = self 
+        tasksTableViews.dataSource = dataSource
+        
+        // Set self as delegate for SwipeTableViewCellDelegate - See TaskViewControllerDataSource file
+        dataSource.cellDelegate = self
+        
+        // Use the cellID for every cell you create - See TaskViewControllerDataSource file
+        dataSource.cellIdentifier = cellID
 
         //MARK: -  Registers a class for use in creating new table cells.
         tasksTableViews.register(SwipeTableViewCell.self, forCellReuseIdentifier: cellID)
-
-        //print(filePath)
         
     }
 
-    
-    // MARK: - Customize TextField
-    func actionTextFieldCustomizeUI() {
-        
-        // Create padding for the Text Field placeholder
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.actionTextField.frame.height))
-        
-        actionTextField.leftView = paddingView
-        actionTextField.leftViewMode = UITextField.ViewMode.always
-    }
-    
-    
+
     // MARK: - Customize UITableView
     func customizeUITableView() {
         // Clear the separator lines betwen cells
@@ -82,51 +71,39 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         messageLabel.textAlignment = .center
         tasksTableViews.backgroundView = messageLabel
         
-        if todoTasks.count == 0 {
+        if dataSource.userTask.count == 0 {
             messageLabel.text = "You have nothing to-do"
         }else {
             messageLabel.text = ""
             
         }
-    
+        
         
     }
     
-   
-    // MARK: Table View Data Source Methods
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoTasks.count
+    //MARK: - TableView  Delegate Methods
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as! SwipeTableViewCell
-        cell.delegate = self
-        
-        if todoTasks.count == 0 {
-            cell.backgroundColor = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1.0)
-        }
-        
-        cell.textLabel?.text = todoTasks[indexPath.row].title
-        
-        return cell
-    }
     
-    
+    //MARK: - editActionForRowAt, SwipeAction for the cells
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             // handle action by updating model with deletion
-    
-            self.context.delete(self.todoTasks[indexPath.row])
-            self.todoTasks.remove(at: indexPath.row)
+            
+            self.context.delete(self.dataSource.userTask[indexPath.row])
+            self.dataSource.userTask.remove(at: indexPath.row)
             
             self.saveTasks()
             
             // Verify if there are more tasks on your to-do list and display the message
-            self.customizeUITableView()
+             self.customizeUITableView()
             
         }
         
@@ -136,15 +113,6 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         return [deleteAction]
     }
     
-    
-    
-    
-    //MARK: - TableView  Delegate Methods
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-    }
     
     // MARK: - Table View Data Manipulation
     func saveTasks() {
@@ -163,7 +131,7 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         let request: NSFetchRequest<UserTasks> = UserTasks.fetchRequest()
         
         do {
-            todoTasks = try context.fetch(request)
+            dataSource.userTask = try context.fetch(request)
         }catch {
             print("Error fetching the data from context: \(error)")
         }
@@ -172,7 +140,6 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     
     
    // MARK: - Add New Tasks
-    
     @IBAction func addTask(_ sender: UIButton) {
         actionTextField.endEditing(true)
         
@@ -181,7 +148,7 @@ class TaskViewController:  UIViewController, UITableViewDelegate, UITableViewDat
             let newTask = UserTasks(context: context)
             newTask.title = taskFieldText
             newTask.completed = false
-            todoTasks.append(newTask)
+            dataSource.userTask.append(newTask)
             
             saveTasks()
         }else {

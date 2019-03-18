@@ -27,7 +27,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="geg-Rs-4lv" userLabel="Input Field Container">
                                                 <rect key="frame" x="0.0" y="51" width="340" height="48"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter an activity.." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZT5-mH-9lW">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter an activity.." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZT5-mH-9lW" customClass="TextFieldPadding" customModule="todoIOS" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="0.0" width="330" height="48"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -113,14 +113,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="nbn-j6-sMK"/>
                     <connections>
                         <outlet property="actionTextField" destination="ZT5-mH-9lW" id="NkD-K9-6h0"/>
-                        <outlet property="tasksTableViews" destination="xvU-8V-fs0" id="aR4-2h-TX6"/>
+                        <outlet property="tasksTableViews" destination="xvU-8V-fs0" id="1DP-DM-dWs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="134.78260869565219" y="131.25"/>
+            <point key="canvasLocation" x="439" y="126"/>
         </scene>
     </scenes>
 </document>

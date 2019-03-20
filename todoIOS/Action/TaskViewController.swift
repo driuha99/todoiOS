@@ -130,7 +130,7 @@ class TaskViewController:  UIViewController, UITableViewDelegate, SwipeTableView
             doneTask.title = task.title
             self.dataSource.completedTask.append(doneTask)
             
-            
+            // Remove the task from userTask array, it has moved on completed tasks
             self.dataSource.userTask.remove(at: indexPath.row)
         
             self.context.delete(task)
@@ -146,6 +146,7 @@ class TaskViewController:  UIViewController, UITableViewDelegate, SwipeTableView
         
         doneAction.backgroundColor = UIColor(red:0.90, green:0.70, blue:0.12, alpha:1.0)
         
+        // Check in which section the cell are, you don't have to display doneAction in done section
         if indexPath.section == 1 {
             return [deleteAction]
         }else {

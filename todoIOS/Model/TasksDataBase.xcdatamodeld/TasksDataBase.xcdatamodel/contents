@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DoneTasks" representedClassName="DoneTasks" syncable="YES" codeGenerationType="class">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserTasks" inverseName="doneTask" inverseEntity="UserTasks" syncable="YES"/>
+    </entity>
     <entity name="UserTasks" representedClassName=".UserTasks" syncable="YES" codeGenerationType="class">
         <attribute name="completed" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="doneTask" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DoneTasks" inverseName="task" inverseEntity="DoneTasks" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UserTasks" positionX="-36" positionY="9" width="128" height="75"/>
+        <element name="DoneTasks" positionX="-1042.21875" positionY="-197.87890625" width="162.765625" height="73"/>
+        <element name="UserTasks" positionX="-1224.36328125" positionY="-92.875" width="128" height="88"/>
     </elements>
 </model>

@@ -32,9 +32,10 @@ class TaskViewController:  UIViewController, UITableViewDelegate, SwipeTableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         // Load the data from database
         loadTasksData()
+        loadCompletedTask()
        
         customizeUITableView()
         
@@ -49,7 +50,8 @@ class TaskViewController:  UIViewController, UITableViewDelegate, SwipeTableView
         dataSource.cellIdentifier = cellID
 
         //MARK: -  Registers a class for use in creating new table cells.
-        tasksTableViews.register(SwipeTableViewCell.self, forCellReuseIdentifier: cellID)
+        tasksTableViews.register(SwipeTableViewCell.self, forCellReuseIdentifier: "todoCellId")
+        tasksTableViews.register(SwipeTableViewCell.self, forCellReuseIdentifier: "doneCellId")
         
     }
 
@@ -71,13 +73,14 @@ class TaskViewController:  UIViewController, UITableViewDelegate, SwipeTableView
         messageLabel.textAlignment = .center
         tasksTableViews.backgroundView = messageLabel
         
-        if dataSource.userTask.count == 0 {
+        if dataSource.userTask.isEmpty, dataSource.completedTask.isEmpty{
             messageLabel.text = "You have nothing to-do"
         }else {
             messageLabel.text = ""
             
         }
         
+        tasksTableViews.reloadData()
         
     }
     
@@ -89,7 +92,6 @@ class TaskViewController:  UIViewController, UITableViewDelegate, SwipeTableView
     }
     
     
-    
     //MARK: - editActionForRowAt, SwipeAction for the cells
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
@@ -97,8 +99,18 @@ class TaskViewController:  UIViewController, UITableViewDelegate, SwipeTableView
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             // handle action by updating model with deletion
             
-            self.context.delete(self.dataSource.userTask[indexPath.row])
-            self.dataSource.userTask.remove(at: indexPath.row)
+            switch indexPath.section {
+                
+            case 0:
+                self.context.delete(self.dataSource.userTask[indexPath.row])
+                self.dataSource.userTask.remove(at: indexPath.row)
+            case 1:
+                self.context.delete(self.dataSource.completedTask[indexPath.row])
+                self.dataSource.completedTask.remove(at: indexPath.row)
+            default:
+                return
+                
+            }
             
             self.saveTasks()
             
@@ -107,10 +119,40 @@ class TaskViewController:  UIViewController, UITableViewDelegate, SwipeTableView
             
         }
         
+        let doneAction = SwipeAction(style: .default, title: "Done") { (action, indexPath) in
+            // Mark this task as completed
+            let task = self.dataSource.userTask[indexPath.row]
+            task.completed = true
+            
+            // Create a new DoneTasks object and give it a title
+            // Then add the object to the completedTask array
+            let doneTask = DoneTasks(context: self.context)
+            doneTask.title = task.title
+            self.dataSource.completedTask.append(doneTask)
+            
+            
+            self.dataSource.userTask.remove(at: indexPath.row)
+        
+            self.context.delete(task)
+            self.saveTasks()
+            
+            
+            self.customizeUITableView()
+        }
+        
         // customize the action appearance
         deleteAction.image = UIImage(named: "deleteIcon")
+        doneAction.image = UIImage(named: "flag")
         
-        return [deleteAction]
+        doneAction.backgroundColor = UIColor(red:0.90, green:0.70, blue:0.12, alpha:1.0)
+        
+        if indexPath.section == 1 {
+            return [deleteAction]
+        }else {
+            return [deleteAction, doneAction]
+        }
+        
+        
     }
     
     
@@ -132,10 +174,21 @@ class TaskViewController:  UIViewController, UITableViewDelegate, SwipeTableView
         
         do {
             dataSource.userTask = try context.fetch(request)
+            
         }catch {
             print("Error fetching the data from context: \(error)")
         }
         
+    }
+    
+    func loadCompletedTask()  {
+        let request: NSFetchRequest<DoneTasks> = DoneTasks.fetchRequest()
+        
+        do{
+            dataSource.completedTask = try context.fetch(request)
+        }catch {
+            print("Error fetching the data from context: \(error)")
+        }
     }
     
     

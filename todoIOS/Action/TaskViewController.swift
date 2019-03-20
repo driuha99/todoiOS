@@ -197,7 +197,7 @@ class TaskViewController:  UIViewController, UITableViewDelegate, SwipeTableView
     @IBAction func addTask(_ sender: UIButton) {
         actionTextField.endEditing(true)
         
-        if let taskFieldText = actionTextField.text, actionTextField.text?.count != 0 {
+        if let taskFieldText = actionTextField.text, !actionTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
             
             let newTask = UserTasks(context: context)
             newTask.title = taskFieldText

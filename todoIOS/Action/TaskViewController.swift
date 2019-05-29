@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import SwipeCellKit
 
-class TaskViewController:  UIViewController, UITableViewDelegate, SwipeTableViewCellDelegate {
+class TaskViewController: UIViewController, UITableViewDelegate, SwipeTableViewCellDelegate {
 
 
     // Create an instance of Task View Controller data source

@@ -3,15 +3,12 @@ todoIOS is a simple app that was supposed to be a clone of [To-do list app](http
 
 The app was built in Swift and I started this app just for learning purposes! If you see any mistakes in my code or where I could do better feel free to point out. 
 
-<details>
-<img src="https://github.com/driuha99/todoiOS/blob/master/screenshots/image1.png" width="350" height="748">            <img src="https://github.com/driuha99/todoiOS/blob/master/screenshots/image2.png" width="350" height="748">
-<img src="https://github.com/driuha99/todoiOS/blob/master/screenshots/image3.png" width="350" height="748">            <img src="https://github.com/driuha99/todoiOS/blob/master/screenshots/image4.png" width="350" height="748">
-</details>
+
 
 ## todo list
 
 - [x] Add "Done" section
-- [ ] Change the design of the add button.
+- [x] Change the design of the add button - make it rounded.
 - [ ] Add alerts, when user want to add an empty task to the todo list
 - [ ] Change the contents of the README file
 

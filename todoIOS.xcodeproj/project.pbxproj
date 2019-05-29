@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		5E0EECBD70C420F0B017886F /* Pods_todoIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B808F65CD3D400BCCBAF73 /* Pods_todoIOS.framework */; };
+		C0020B18229EB9CE001CE026 /* UIAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0020B17229EB9CE001CE026 /* UIAddButton.swift */; };
 		C03F481B219B80690004824E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03F481A219B80690004824E /* AppDelegate.swift */; };
 		C03F481D219B80690004824E /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03F481C219B80690004824E /* TaskViewController.swift */; };
 		C03F4820219B80690004824E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C03F481E219B80690004824E /* Main.storyboard */; };
 		C03F4822219B806C0004824E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C03F4821219B806C0004824E /* Assets.xcassets */; };
 		C03F4825219B806C0004824E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C03F4823219B806C0004824E /* LaunchScreen.storyboard */; };
+		C09F4FCD229EC4DF0082858A /* UITaskInputLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09F4FCC229EC4DF0082858A /* UITaskInputLabel.swift */; };
 		C0BAC903223E71E800B5F420 /* TaskViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BAC902223E71E800B5F420 /* TaskViewControllerDataSource.swift */; };
 		C0D21DEE21C87C3100934CF9 /* TasksDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0D21DEC21C87C3100934CF9 /* TasksDataBase.xcdatamodeld */; };
 		C0FD82D522401460006F82A9 /* TextFieldPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FD82D422401460006F82A9 /* TextFieldPadding.swift */; };
@@ -21,6 +23,7 @@
 /* Begin PBXFileReference section */
 		599FDA607786FE3E112BFC81 /* Pods-todoIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-todoIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-todoIOS/Pods-todoIOS.release.xcconfig"; sourceTree = "<group>"; };
 		BFC49B619E9C28B0721600CE /* Pods-todoIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-todoIOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-todoIOS/Pods-todoIOS.debug.xcconfig"; sourceTree = "<group>"; };
+		C0020B17229EB9CE001CE026 /* UIAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAddButton.swift; sourceTree = "<group>"; };
 		C03F4817219B80690004824E /* todoIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C03F481A219B80690004824E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C03F481C219B80690004824E /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +31,7 @@
 		C03F4821219B806C0004824E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C03F4824219B806C0004824E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C03F4826219B806C0004824E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C09F4FCC229EC4DF0082858A /* UITaskInputLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITaskInputLabel.swift; sourceTree = "<group>"; };
 		C0BAC902223E71E800B5F420 /* TaskViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewControllerDataSource.swift; sourceTree = "<group>"; };
 		C0D21DED21C87C3100934CF9 /* TasksDataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TasksDataBase.xcdatamodel; sourceTree = "<group>"; };
 		C0FD82D422401460006F82A9 /* TextFieldPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldPadding.swift; sourceTree = "<group>"; };
@@ -67,7 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				C03F4821219B806C0004824E /* Assets.xcassets */,
-				C03F4823219B806C0004824E /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting files";
 			sourceTree = "<group>";
@@ -75,8 +78,9 @@
 		C03E525B21B725DD00A22135 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C03F481E219B80690004824E /* Main.storyboard */,
 				C0FD82D422401460006F82A9 /* TextFieldPadding.swift */,
+				C0020B17229EB9CE001CE026 /* UIAddButton.swift */,
+				C09F4FCC229EC4DF0082858A /* UITaskInputLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -124,6 +128,8 @@
 				C03E525C21B726D300A22135 /* Model */,
 				C03E525D21B726DB00A22135 /* Action */,
 				C03E525A21B7254300A22135 /* Supporting files */,
+				C03F481E219B80690004824E /* Main.storyboard */,
+				C03F4823219B806C0004824E /* LaunchScreen.storyboard */,
 				C03F4826219B806C0004824E /* Info.plist */,
 			);
 			path = todoIOS;
@@ -163,6 +169,7 @@
 				TargetAttributes = {
 					C03F4816219B80690004824E = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -245,7 +252,9 @@
 				C03F481B219B80690004824E /* AppDelegate.swift in Sources */,
 				C0BAC903223E71E800B5F420 /* TaskViewControllerDataSource.swift in Sources */,
 				C0D21DEE21C87C3100934CF9 /* TasksDataBase.xcdatamodeld in Sources */,
+				C09F4FCD229EC4DF0082858A /* UITaskInputLabel.swift in Sources */,
 				C0FD82D522401460006F82A9 /* TextFieldPadding.swift in Sources */,
+				C0020B18229EB9CE001CE026 /* UIAddButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,7 +410,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.webdeveloperplus.todoIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -420,7 +429,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.webdeveloperplus.todoIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
